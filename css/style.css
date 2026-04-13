@@ -86,3 +86,86 @@ strong {
   max-width: 580px;
   margin-bottom: 3rem;
 }
+
+/* ==========================================================================
+   SECTION 4 - BUTTONS
+   ========================================================================== */
+
+.btn-primary {
+  display: inline-block;
+  background: var(--accent-gold);
+  color: #1a1a18;
+  padding: 0.9rem 2rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  text-align: center;
+}
+.btn-primary:hover {
+  background: var(--accent-gold-light);
+  transform: translateY(-2px);
+  color: #1a1a18;
+}
+
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent-gold);
+  padding: 0.9rem 2rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--accent-gold);
+  border-radius: var(--radius);
+  transition: var(--transition);
+  text-align: center;
+}
+.btn-outline:hover {
+  background: var(--accent-gold);
+  color: #1a1a18;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   SECTION 5 - CARDS
+   ========================================================================== */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: var(--transition);
+}
+.card:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(201,169,110,0.1);
+}
+
+/* ==========================================================================
+   SECTION 6 - BADGES
+   ========================================================================== */
+
+.badge {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  transition: var(--transition);
+  margin: 0.25rem;
+}
+.badge:hover {
+  background: var(--accent-gold);
+  color: #1a1a18;
+}
