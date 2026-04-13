@@ -1,0 +1,88 @@
+/* ==========================================================================
+   SECTION 1 - CSS CUSTOM PROPERTIES
+   ========================================================================== */
+
+:root {
+  --bg-primary: #1a1a18;
+  --bg-secondary: #222220;
+  --bg-card: #2a2a27;
+  --accent-gold: #c9a96e;
+  --accent-gold-light: #e8c98a;
+  --text-primary: #f5f0e8;
+  --text-muted: #a09a8e;
+  --border: rgba(201, 169, 110, 0.2);
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+  --max-width: 1200px;
+  --radius: 4px;
+  --transition: 0.3s ease;
+}
+
+/* ==========================================================================
+   SECTION 2 - CSS RESET
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+a { text-decoration: none; }
+button { cursor: pointer; }
+
+/* ==========================================================================
+   SECTION 3 - BASE TYPOGRAPHY
+   ========================================================================== */
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); }
+
+p {
+  margin-bottom: 1.25rem;
+  color: var(--text-muted);
+}
+
+a { color: var(--accent-gold); }
+
+strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.section-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.75rem;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.section-subheading {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 580px;
+  margin-bottom: 3rem;
+}
