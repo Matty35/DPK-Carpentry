@@ -169,3 +169,83 @@ strong {
   background: var(--accent-gold);
   color: #1a1a18;
 }
+
+/* ==========================================================================
+   SECTION 7 - LAYOUT
+   ========================================================================== */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: 1fr; }
+  .container { padding: 0 1.25rem; }
+  .section { padding: 3.5rem 0; }
+}
+
+/* ==========================================================================
+   SECTION 8 - UTILITIES
+   ========================================================================== */
+
+.text-center { text-align: center; }
+.text-gold { color: var(--accent-gold); }
+.mb-0 { margin-bottom: 0; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.animate-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.animate-in:nth-child(2) { transition-delay: 0.1s; }
+.animate-in:nth-child(3) { transition-delay: 0.2s; }
+.animate-in:nth-child(4) { transition-delay: 0.3s; }
+.animate-in:nth-child(5) { transition-delay: 0.4s; }
+.animate-in:nth-child(6) { transition-delay: 0.5s; }
