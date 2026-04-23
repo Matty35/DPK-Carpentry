@@ -33,15 +33,27 @@ document.addEventListener('DOMContentLoaded', function () {
   // 3. SCROLL ANIMATIONS
   const animElements = document.querySelectorAll('.animate-in');
   if (animElements.length) {
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+    // Immediately reveal any elements already in the viewport — no async delay
+    animElements.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom >= 0) {
+        el.classList.add('visible');
+      }
+    });
+    // Use IntersectionObserver to reveal the rest as they scroll into view
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0 });
+      animElements.forEach(function (el) {
+        if (!el.classList.contains('visible')) { observer.observe(el); }
       });
-    }, { threshold: 0.12 });
-    animElements.forEach(function (el) { observer.observe(el); });
+    }
   }
 
   // 4. NETLIFY FORM HANDLER
