@@ -1,6 +1,56 @@
 [build]
   publish = "."
 
+# =============================================================================
+# REDIRECTS
+# Netlify evaluates rules top-to-bottom; first match wins.
+# force = true makes a rule fire even when the file exists on disk.
+# =============================================================================
+
+# 1. www → non-www (https). Must come first so www is normalised before
+#    any path-based rules run.
+[[redirects]]
+  from   = "https://www.dpkcarpentrydecorating.co.uk/*"
+  to     = "https://dpkcarpentrydecorating.co.uk/:splat"
+  status = 301
+  force  = true
+
+# 2. http non-www → https non-www.
+#    (Netlify enforces HTTPS at the platform level, but explicit rules here
+#    ensure the 301 fires even if someone bypasses the platform redirect.)
+[[redirects]]
+  from   = "http://dpkcarpentrydecorating.co.uk/*"
+  to     = "https://dpkcarpentrydecorating.co.uk/:splat"
+  status = 301
+  force  = true
+
+# 3. http www → https non-www (belt-and-suspenders for the worst-case combo).
+[[redirects]]
+  from   = "http://www.dpkcarpentrydecorating.co.uk/*"
+  to     = "https://dpkcarpentrydecorating.co.uk/:splat"
+  status = 301
+  force  = true
+
+# 4. /index.html → /
+#    Explicit rule BEFORE the /*.html catch-all so the root never lands on
+#    /index (which would be a different URL than /).
+[[redirects]]
+  from   = "/index.html"
+  to     = "/"
+  status = 301
+  force  = true
+
+# 5. Strip .html extension from every other path.
+#    force = true is required because the .html files exist on disk — without
+#    it Netlify would serve the file directly instead of redirecting.
+#    :splat captures everything before .html, including sub-directory slashes,
+#    so /locations/high-wycombe.html → /locations/high-wycombe.
+[[redirects]]
+  from   = "/*.html"
+  to     = "/:splat"
+  status = 301
+  force  = true
+
 [[headers]]
   for = "/css/*"
   [headers.values]
