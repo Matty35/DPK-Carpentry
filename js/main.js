@@ -57,12 +57,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // 4. NETLIFY FORM HANDLER
-  document.querySelectorAll('form[netlify]').forEach(function (form) {
+  // Hook on .lead-form (not the netlify attribute, which Netlify strips from
+  // deployed HTML). Success message only shows when Netlify confirms receipt.
+  document.querySelectorAll('form.lead-form, form[netlify]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       const data = new URLSearchParams(new FormData(form));
-      fetch('/', { method: 'POST', body: data })
-        .then(function () {
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data.toString()
+      })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Form submission failed: HTTP ' + response.status);
+          }
           form.style.display = 'none';
           const success = form.nextElementSibling;
           if (success && success.classList.contains('form-success')) {
@@ -70,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         })
         .catch(function () {
-          alert('Sorry, there was an error. Please call us on 07766 314197.');
+          alert('Sorry, your enquiry could not be sent. Please call us on 07766 314197 or email info@dpkcarpentrydecorating.co.uk.');
         });
     });
   });
